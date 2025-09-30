@@ -1,18 +1,33 @@
-import { useState } from "react";
-import OcurrencesChart from "../components/OcurrencesChart";
-import OcurrenceTable from "../components/OcurrencesTable";
-import { useUser } from "../context/UserContext";
-import { detailedOcurrencesData } from "../data/ocurrencesTableData";
-import AddOcurrenceModal from "../components/AddOcurrenceModal";
+import GradeChart from '../components/GradeChart';
+import GradeTable from '../components/GradeTable';
+import { useUser } from '../context/UserContext';
+import AddGradeModal from '../components/AddGradeModal';
+import { useState, useEffect } from 'react';
 
 const profilePicture = 'https://i.pravatar.cc'
 
-function OccurrencesPage() {
-  const { profile } = useUser()
+interface Grade {
+  id: string;
+  subject: string;
+  grade: number;
+  semester: string;
+  publishedAt: string;
+}
+
+function GradePage() {
+  const { profile } = useUser();
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [grades, setGrades] = useState<Grade[]>([]);
 
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
+
+  useEffect(() => {
+    fetch('http://localhost:7070/api/grades')
+      .then(response => response.json())
+      .then(data => setGrades(data))
+      .catch(error => console.error('Erro ao buscar notas:', error)); 
+  }, []);
 
   return (
     <div className="bg-gray-100 min-h-screen p-4 sm:p-6 lg:p-8">
@@ -31,15 +46,15 @@ function OccurrencesPage() {
         </div>
         <div className="bg-white rounded-xl shadow-md overflow-hidden">
           <div className="p-6">
-            <h3 className="text-xl font-semibold text-gray-800">Quadro de Ocorrências</h3>
-            <p className="text-sm text-gray-500 mt-1 mb-4">Ocorrências do ano inteiro</p>
-            <OcurrencesChart />
+            <h3 className="text-xl font-semibold text-gray-800">Quadro de Notas</h3>
+            <p className="text-sm text-gray-500 mt-1 mb-4">Notas do período selecionado.</p>
+            <GradeChart />
           </div>
         </div>
         <div className="bg-white rounded-xl shadow-md overflow-hidden mt-6">
           <div className="p-6">
-            <h3 className="text-xl font-semibold text-gray-800">Tabela de Ocorrências</h3>
-            <OcurrenceTable ocurrences={detailedOcurrencesData} />
+            <h3 className="text-xl font-semibold text-gray-800">Tabela de notas</h3>
+            <GradeTable grades={grades} />
           </div>
         </div>
         <div className="text-center mt-6">
@@ -47,13 +62,13 @@ function OccurrencesPage() {
             onClick={openModal}
             className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md transition duration-300 ease-in-out transform hover:scale-105"
           >
-            Adicionar Nova Ocorrência
+            Adicionar Nova Nota
           </button>
         </div>
-        <AddOcurrenceModal isOpen={isModalOpen} onClose={closeModal} />
+        <AddGradeModal isOpen={isModalOpen} onClose={closeModal} />
       </div>
     </div>
   );
-}
+};
 
-export default OccurrencesPage
+export default GradePage;

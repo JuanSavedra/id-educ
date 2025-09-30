@@ -1,10 +1,14 @@
-import { type OcurrenceEntry } from '../data/ocurrencesTableData'
-
-interface OcurrenceTableProps {
-  ocurrences: OcurrenceEntry[]
+interface Occurrence {
+  id: string,
+  type: string, 
+  publishedAt: string
 }
 
-function OcurrenceTable({ ocurrences }: OcurrenceTableProps) {
+interface OccurrenceTableProps {
+  occurrences: Occurrence[]
+}
+
+function OccurrenceTable({ occurrences }: OccurrenceTableProps) {
   const formatDate = (dateString: string) => {
     return new Date(dateString).toLocaleDateString('pt-BR', {
       day: '2-digit',
@@ -28,13 +32,13 @@ function OcurrenceTable({ ocurrences }: OcurrenceTableProps) {
             </tr>
           </thead>
           <tbody>
-            {ocurrences.map((ocurrence) => {
+            {Array.isArray(occurrences) && occurrences.map((occurrence) => {
               return (
-                <tr key={ocurrence.id} className="bg-white border-b hover:bg-gray-50">
+                <tr key={occurrence.id} className="bg-white border-b hover:bg-gray-50">
                   <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                    {ocurrence.type}
+                    {occurrence.type}
                   </th>
-                  <td className="px-6 py-4 text-center">{formatDate(ocurrence.publishedDate)}</td>
+                  <td className="px-6 py-4 text-center">{formatDate(occurrence.publishedAt)}</td>
                 </tr>
               );
             })}
@@ -45,4 +49,4 @@ function OcurrenceTable({ ocurrences }: OcurrenceTableProps) {
   );
 }
 
-export default OcurrenceTable
+export default OccurrenceTable

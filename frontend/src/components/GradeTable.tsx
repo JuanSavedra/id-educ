@@ -1,10 +1,16 @@
-import { type GradeEntry } from '../data/gradeTableData'
-
-interface GradesTableProps {
-  grades: GradeEntry[]
+interface Grade {
+  id: string,
+  subject: string,
+  grade: number,
+  semester: string,
+  publishedAt: string
 }
 
-function GradeTable({ grades }: GradesTableProps) {
+interface GradeTableProps {
+  grades: Grade[]
+}
+
+function GradeTable({ grades }: GradeTableProps) {
   const formatDate = (dateString: string) => {
     return new Date(dateString).toLocaleDateString('pt-BR', {
       day: '2-digit',
@@ -30,7 +36,7 @@ function GradeTable({ grades }: GradesTableProps) {
             </tr>
           </thead>
           <tbody>
-            {grades.map((grade) => {
+            {Array.isArray(grades) && grades.map((grade) => {
               const gradeColorClass = grade.grade > 5
                 ? 'bg-green-100 text-green-800'
                 : 'bg-red-100 text-red-800';
@@ -46,7 +52,7 @@ function GradeTable({ grades }: GradesTableProps) {
                     </span>
                   </td>
                   <td className="px-6 py-4 text-center">{grade.semester}</td>
-                  <td className="px-6 py-4 text-center">{formatDate(grade.publishedDate)}</td>
+                  <td className="px-6 py-4 text-center">{formatDate(grade.publishedAt)}</td>
                 </tr>
               );
             })}
@@ -57,4 +63,4 @@ function GradeTable({ grades }: GradesTableProps) {
   );
 }
 
-export default GradeTable
+export default GradeTable;

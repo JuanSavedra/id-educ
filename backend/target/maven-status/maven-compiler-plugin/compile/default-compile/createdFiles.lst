@@ -1,0 +1,9 @@
+com/ideduc/service/OccurrenceService.class
+com/ideduc/controller/OccurrenceController.class
+com/ideduc/controller/GradeController.class
+com/ideduc/Main.class
+com/ideduc/repository/GradeRepository.class
+com/ideduc/model/Grade.class
+com/ideduc/service/GradeService.class
+com/ideduc/repository/OccurrenceRepository.class
+com/ideduc/model/Occurrence.class
