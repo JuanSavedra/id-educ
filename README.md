@@ -23,17 +23,15 @@ Este projeto ainda está em desenvolvimento e não foi finalizado.
 ### Backend
 
 *   **Java 17:** Linguagem de programação principal.
-*   **Javalin:** Framework web para a criação da API REST.
-*   **Jackson:** Biblioteca para serialização/desserialização de JSON.
+*   **Spring Boot:** Framework web para a criação da API REST.
 *   **Maven:** Ferramenta de gerenciamento de dependências e build.
 
 ### Frontend
 
 *   **React:** Biblioteca para a construção da interface de usuário.
-*   **TypeScript:** Superset do JavaScript que adiciona tipagem estática.
-*   **Vite:** Ferramenta de build e desenvolvimento frontend.
 *   **React Router:** Para gerenciamento de rotas na aplicação.
 *   **Recharts:** Biblioteca para a criação de gráficos.
+*   **TypeScript:** Superset do JavaScript que adiciona tipagem estática.
 *   **Tailwind CSS:** Framework de CSS para estilização.
 
 ## Como Executar
