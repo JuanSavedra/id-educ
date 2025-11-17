@@ -23,7 +23,7 @@ Este projeto ainda está em desenvolvimento e não foi finalizado.
 ### Backend
 
 *   **Java 17:** Linguagem de programação principal.
-*   **Spring Boot:** Framework web para a criação da API REST.
+*   **Spring Boot:** Framework web para a criação da API REST. (Em transição, antes era Javalin)
 *   **Maven:** Ferramenta de gerenciamento de dependências e build.
 
 ### Frontend
